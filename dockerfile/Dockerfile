@@ -4,7 +4,8 @@ FROM ubuntu:xenial
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG SEN2COR_VERSION='2.4.0'
+ARG SEN2COR_VERSION='02.05.05'
+ARG SEN2COR_VERSION_SHORT='2.5.5'
 ARG GOSU_VERSION='1.10'
 ARG SEN2COR="Sen2Cor-${SEN2COR_VERSION}-Linux64.run"
 RUN apt-get update && apt-get install -y \
@@ -13,7 +14,7 @@ RUN apt-get update && apt-get install -y \
         file \
         wget && \
     rm -rf /var/lib/apt/lists/* && \
-    wget "http://step.esa.int/thirdparties/sen2cor/${SEN2COR_VERSION}/${SEN2COR}" && \
+    wget "http://step.esa.int/thirdparties/sen2cor/${SEN2COR_VERSION_SHORT}/${SEN2COR}" && \
     bash ${SEN2COR} && \
     rm ${SEN2COR} && \
     cp -p /Sen2Cor-${SEN2COR_VERSION}-Linux64/lib/python2.7/site-packages/sen2cor/cfg/L2A_GIPP.xml /root/sen2cor/cfg/L2A_GIPP_without_dem.xml && \
